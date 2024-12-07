@@ -1,0 +1,32 @@
+.dataTables_wrapper {
+    width: 100%;
+    overflow: auto;
+}
+table.dataTable {
+    width: 100% !important;
+}
+
+/* Container for the name and role */
+.navbar-right .profile .meta {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    height: 100%; /* Ensure it takes the full height of the parent */
+    line-height: 1.2; /* Adjust line spacing */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Styling for the user name */
+.navbar-right .profile .meta .user-name {
+    font-size: 1em; /* Standard size */
+    font-weight: bold; /* Bold for emphasis */
+    color: white; /* Match the navbar text color */
+}
+
+/* Styling for the user role */
+.navbar-right .profile .meta .user-role {
+    font-size: 0.8em; /* Smaller than the name */
+    color: white; /* Light gray for distinction */
+    margin-top: 2px; /* Spacing from the name */
+}
