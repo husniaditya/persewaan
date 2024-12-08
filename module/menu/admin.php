@@ -36,11 +36,6 @@
                         <span class="text"><i class="fa-solid fa-list-check"></i> Jenis Pekerjaan</span>
                     </a>
                 </li>
-                <li>
-                    <a href="barang.php">
-                        <span class="text"><i class="fa-solid fa-box"></i> Alat</span>
-                    </a>
-                </li>
             </ul>
             <!--/ END 2nd Level Menu -->
         </li>

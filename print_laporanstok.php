@@ -49,7 +49,7 @@ if (isset($_GET['DATEA']) && isset($_GET['DATEB']) && isset($_GET['ID_KATEGORI']
     
             $this->SetFont('helvetica', '', 8);
             // Centering the branch information
-            $this->Write(5, 'Wilmar CKP - Regional Office', '', 0, 'C', true, 0, false, false, 0);
+            $this->Write(5, 'Regional Office - Wilmar CKP', '', 0, 'C', true, 0, false, false, 0);
             $this->Ln(-1);
             $branchWidth = $this->GetStringWidth('Pd. Damar, Kec. Mentaya Hilir Utara, Kabupaten Kotawaringin Timur, Kalimantan Tengah 74361');
             $this->SetX(($pageWidth - $branchWidth) / 8);

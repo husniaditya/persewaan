@@ -86,7 +86,7 @@ if (isset($_GET['method']) && $_GET['method'] == 'delete') {
         }
     } else { // Add Data
         if (isset($_POST['simpan'])) {
-            $ID_USER = createKode('m_user', 'ID_USER', 'USER', 3);
+            $ID_USER = createKode('m_user', 'ID_USER', 'USR', 3);
             $USERNAME = $_POST['USERNAME'];
             $PASSWORD = $_POST['USERPASSWORD'];
             $NAMA = $_POST['NAMA'];

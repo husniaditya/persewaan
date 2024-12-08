@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
     
             $this->SetFont('helvetica', '', 8);
             // Centering the branch information
-            $this->Write(5, 'Wilmar CKP - Regional Office', '', 0, 'C', true, 0, false, false, 0);
+            $this->Write(5, 'Regional Office - Wilmar CKP', '', 0, 'C', true, 0, false, false, 0);
             $this->Ln(-1);
             $branchWidth = $this->GetStringWidth('Pd. Damar, Kec. Mentaya Hilir Utara, Kabupaten Kotawaringin Timur, Kalimantan Tengah 74361');
             $this->SetX(($pageWidth - $branchWidth) / 8);
@@ -176,7 +176,7 @@ if (isset($_GET['id'])) {
     $pdf->Cell(30, 40, $dataKeluar['NAMA_KATEGORI'], 1, 0, 'C');
     $pdf->Cell(10, 40, $dataKeluar['QTY'], 1, 0, 'R');
     $pdf->Cell(20, 40, $dataKeluar['KONDISI'], 1, 0, 'C');
-    $pdf->MultiCell(85, 40, $dataKeluar['KETERANGAN_ALAT'], 1, 'C', 0, 0, '', '', true, 0, false, true, 40, 'M');
+    $pdf->MultiCell(85, 40, $dataKeluar['KETERANGAN_ALAT'], 1, 'L', 0, 0, '', '', true, 0, false, true, 40, 'M');
     $extension = strtoupper(pathinfo($dataKeluar['FOTO'], PATHINFO_EXTENSION)); // Extract the file extension
     // Place the image
     $pdf->Image($dataKeluar['FOTO'], $pdf->GetX(), $pdf->GetY(), 50, 40, $extension, '', '', true, 150, '', false, false, 1, false, false, false);
@@ -195,7 +195,7 @@ if (isset($_GET['id'])) {
     $pdf->Cell(30, 40, $dataMasuk['NAMA_KATEGORI'], 1, 0, 'C');
     $pdf->Cell(10, 40, $dataMasuk['QTY'], 1, 0, 'R');
     $pdf->Cell(20, 40, $dataMasuk['KONDISI'], 1, 0, 'C');
-    $pdf->MultiCell(85, 40, $dataMasuk['KETERANGAN_ALAT'], 1, 'C', 0, 0, '', '', true, 0, false, true, 40, 'M');
+    $pdf->MultiCell(85, 40, $dataMasuk['KETERANGAN_ALAT'], 1, 'L', 0, 0, '', '', true, 0, false, true, 40, 'M');
     $extension = strtoupper(pathinfo($dataMasuk['FOTO'], PATHINFO_EXTENSION)); // Extract the file extension
     // Place the image
     $pdf->Image($dataMasuk['FOTO'], $pdf->GetX(), $pdf->GetY(), 50, 40, $extension, '', '', true, 150, '', false, false, 1, false, false, false);
