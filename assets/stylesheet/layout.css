@@ -699,6 +699,7 @@ html.frontend body {
   .sidebar.sidebar-left.sidebar-menu {
     left: auto;
     float: left;
+    background-color: deepskyblue;
   }
   .sidebar.sidebar-left.sidebar-menu ~ footer#footer {
     left: 240px;

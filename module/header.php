@@ -2,7 +2,7 @@
 <!-- START navbar header -->
 <div class="navbar-header">
     <!-- Brand -->
-    <a class="navbar-brand" href="javascript:void(0);">
+    <a class="navbar-brand" href="javascript:void(0);" style="background-color: seagreen;">
         <!-- <span class="logo-figure"></span> -->
         <!-- <span class="logo-text"></span> -->
     </a>

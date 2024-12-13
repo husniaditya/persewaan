@@ -14700,7 +14700,7 @@ hr {
 .topmenu li > .submenu li a,
 .mainmenu li > .submenu li a {
   font-size: 13px;
-  color: #777777;
+  color: black;
   padding: 0px 25px 0px 15px;
 }
 .topmenu li > .submenu li a > .figure,
@@ -15064,7 +15064,7 @@ hr {
             box-shadow: none;
   }
   #header.navbar .navbar-toolbar {
-    background-color: #3ea1ec;
+    background-color: seagreen;
   }
   #header.navbar .navbar-toolbar .navbar-nav > .navbar-main > a,
   #header.navbar .navbar-toolbar .navbar-nav > li > a {
@@ -15189,7 +15189,8 @@ hr {
 }
 .sidebar .topmenu li a,
 .sidebar .mainmenu li a {
-  color: rgba(0, 0, 0, 0.6);
+  color: black;
+  background-color: deepskyblue;
 }
 .sidebar .topmenu li a:hover,
 .sidebar .mainmenu li a:hover {
@@ -15198,7 +15199,7 @@ hr {
 }
 .sidebar .topmenu li > .submenu,
 .sidebar .mainmenu li > .submenu {
-  background-color: white;
+  background-color: deepskyblue;
 }
 .sidebar-minimized .sidebar .topmenu li > .submenu,
 .sidebar-minimized .sidebar .mainmenu li > .submenu,
