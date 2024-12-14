@@ -123,7 +123,7 @@ if (isset($_GET['id']) && $_GET['method'] == 'view') {
                         <label>Foto Alat </label><br>
                         <div id="preview-container">
                             <a href="#" id="openFoto" target="_blank">
-                                <img id="preview-image" src="#" alt="Preview" style="width: auto; height: 280px;text-align: center;overflow: hidden;position: relative; object-fit:contain" />
+                                <img id="preview-image" src="#" alt="Preview" style="width: 400px; height: 280px;text-align: center;overflow: hidden;position: relative; object-fit:contain" />
                             </a>
                         </div>
                     </div>
@@ -142,11 +142,6 @@ if (isset($_GET['id']) && $_GET['method'] == 'view') {
     <?php
 }
 elseif (isset($_GET['id']) && $_GET['method'] == 'edit') {
-    if ($_SESSION["LOGINAKS_GIS"] != "Admin") {
-        ?><script>alert('Anda tidak memiliki akses ke halaman ini');</script><?php
-        ?><script>document.location.href='pengeluaran.php';</script><?php
-        die(0);
-    }
     ?>
     <!-- START Template Container -->
     <div class="container-fluid">
@@ -269,7 +264,7 @@ elseif (isset($_GET['id']) && $_GET['method'] == 'edit') {
                     <div class="short-div">
                         <div class="form-group">
                             <label class="control-label">QTY</label>
-                            <input class="form-control" type="number" name="QTY" id="QTY" placeholder="Qty" value="" data-parsley-required>
+                            <input class="form-control" type="text" name="QTY" id="QTY" placeholder="Qty" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" data-parsley-required>
                         </div>
                     </div>
                     <div class="short-div">
@@ -295,7 +290,7 @@ elseif (isset($_GET['id']) && $_GET['method'] == 'edit') {
                         <label>Foto Alat </label><br>
                         <div id="preview-container">
                             <a href="#" id="openFoto" onclick="viewImage(); return false;" target="_blank">
-                                <img id="preview-image" src="#" alt="Preview" style="width: auto; height: 280px;text-align: center;overflow: hidden;position: relative; object-fit:contain" />
+                                <img id="preview-image" src="#" alt="Preview" style="width: 400px; height: 280px;text-align: center;overflow: hidden;position: relative; object-fit:contain" />
                             </a>
                         </div>
                         <br>
@@ -447,7 +442,7 @@ else {
                     <div class="short-div">
                         <div class="form-group">
                             <label class="control-label">QTY</label>
-                            <input class="form-control" type="number" name="QTY" id="QTY" placeholder="Qty" value="" data-parsley-required>
+                            <input class="form-control" type="text" name="QTY" id="QTY" placeholder="Qty" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" data-parsley-required>
                         </div>
                     </div>
                     <div class="short-div">
@@ -473,7 +468,7 @@ else {
                         <label>Foto Alat </label><br>
                         <div id="preview-container">
                             <a href="#" id="openFoto" onclick="viewImage(); return false;" target="_blank">
-                                <img id="preview-image" src="#" alt="Preview" style="width: auto; height: 280px;text-align: center;overflow: hidden;position: relative; object-fit:contain" />
+                                <img id="preview-image" src="#" alt="Preview" style="width: 400px; height: 280px;text-align: center;overflow: hidden;position: relative; object-fit:contain" />
                             </a>
                         </div>
                         <br>

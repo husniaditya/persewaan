@@ -124,7 +124,24 @@ if (isset($_GET['id'])) {
     );
     $getPengeluaran = GetQuery2($query2, $params);
     $dataKeluar = $getPengeluaran->fetchAll(PDO::FETCH_ASSOC);
-    $dataKeluar = $dataKeluar[0];
+
+    if (empty($dataKeluar)) {
+        $dataKeluar['ID_PENGELUARAN'] = $dataMasuk['ID_PENGELUARAN'];
+        $dataKeluar['ID_BARANG'] = '';
+        $dataKeluar['NAMA_BARANG'] = '';
+        $dataKeluar['NAMA_KATEGORI'] = '';
+        $dataKeluar['QTY'] = '';
+        $dataKeluar['KONDISI'] = '';
+        $dataKeluar['KETERANGAN_ALAT'] = '';
+        $dataKeluar['FOTO'] = '';
+        $dataKeluar['STATUS_APPROVAL_DESK'] = '';
+        $dataKeluar['APPROVAL_NAMA'] = '';
+        $dataKeluar['NAMA_PEKERJAAN'] = '';
+        $dataKeluar['TANGGAL_APPROVAL'] = '';
+        $dataKeluar['TANGGAL_KELUAR'] = '';
+    } else {
+        $dataKeluar = $dataKeluar[0];
+    }
     
     // Member Information
     $pdf->SetFont('helvetica', '', 10);
@@ -177,9 +194,13 @@ if (isset($_GET['id'])) {
     $pdf->Cell(10, 40, $dataKeluar['QTY'], 1, 0, 'R');
     $pdf->Cell(20, 40, $dataKeluar['KONDISI'], 1, 0, 'C');
     $pdf->MultiCell(85, 40, $dataKeluar['KETERANGAN_ALAT'], 1, 'L', 0, 0, '', '', true, 0, false, true, 40, 'M');
-    $extension = strtoupper(pathinfo($dataKeluar['FOTO'], PATHINFO_EXTENSION)); // Extract the file extension
-    // Place the image
-    $pdf->Image($dataKeluar['FOTO'], $pdf->GetX(), $pdf->GetY(), 50, 40, $extension, '', '', true, 150, '', false, false, 1, false, false, false);
+    if (empty($dataKeluar['FOTO'])) {
+        $pdf->Cell(50, 40, '', 1, 0, 'C');
+    } else {
+        $extension = strtoupper(pathinfo($dataKeluar['FOTO'], PATHINFO_EXTENSION)); // Extract the file extension
+        // Place the image
+        $pdf->Image($dataKeluar['FOTO'], $pdf->GetX(), $pdf->GetY(), 50, 40, $extension, '', '', true, 150, '', false, false, 1, false, false, false);
+    }
 
     $pdf->Ln(40);
 
@@ -196,9 +217,13 @@ if (isset($_GET['id'])) {
     $pdf->Cell(10, 40, $dataMasuk['QTY'], 1, 0, 'R');
     $pdf->Cell(20, 40, $dataMasuk['KONDISI'], 1, 0, 'C');
     $pdf->MultiCell(85, 40, $dataMasuk['KETERANGAN_ALAT'], 1, 'L', 0, 0, '', '', true, 0, false, true, 40, 'M');
-    $extension = strtoupper(pathinfo($dataMasuk['FOTO'], PATHINFO_EXTENSION)); // Extract the file extension
-    // Place the image
-    $pdf->Image($dataMasuk['FOTO'], $pdf->GetX(), $pdf->GetY(), 50, 40, $extension, '', '', true, 150, '', false, false, 1, false, false, false);
+    if (empty($dataMasuk['FOTO'])) {
+        $pdf->Cell(50, 40, '', 1, 0, 'C');
+    } else {
+        $extension2 = strtoupper(pathinfo($dataMasuk['FOTO'], PATHINFO_EXTENSION)); // Extract the file extension
+        // Place the image
+        $pdf->Image($dataMasuk['FOTO'], $pdf->GetX(), $pdf->GetY(), 50, 40, $extension2, '', '', true, 150, '', false, false, 1, false, false, false);
+    }
     
     
     // Output PDF

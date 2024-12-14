@@ -166,7 +166,7 @@ $(document).ready(function () {
                     $("#OPERATING_UNIT").val(data.OPERATING_UNIT);
                     $("#DIVISI").val(data.DIVISI);
                     $("#selectize-select3")[0].selectize.setValue(data.ID_PEKERJAAN);
-                    $("#KETERANGAN_PEMASUKAN").val(data.KETERANGAN_PEMASUKAN);
+                    $("#KETERANGAN_PENGELUARAN").val(data.KETERANGAN_PENGELUARAN);
                     $("#selectize-select")[0].selectize.setValue(data.ID_KATEGORI);
                     setTimeout(function () {
                         $("#selectize-select2")[0].selectize.setValue(data.ID_BARANG);
@@ -200,7 +200,7 @@ $(document).ready(function () {
                     $("#OPERATING_UNIT").val(data.OPERATING_UNIT);
                     $("#DIVISI").val(data.DIVISI);
                     $("#ID_PEKERJAAN").val(data.NAMA_PEKERJAAN);
-                    $("#KETERANGAN_PEMASUKAN").val(data.KETERANGAN_PEMASUKAN);
+                    $("#KETERANGAN_PENGELUARAN").val(data.KETERANGAN_PENGELUARAN);
                     $("#ID_KATEGORI").val(data.NAMA_KATEGORI);
                     $("#ID_BARANG").val(data.NAMA_BARANG);
                     $("#preview-image").attr("src", data.FOTO);

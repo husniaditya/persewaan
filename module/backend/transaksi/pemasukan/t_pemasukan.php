@@ -110,7 +110,7 @@ if (isset($_GET['method']) && $_GET['method'] == 'delete') {
             $updatePersediaan = GetQuery2($query2, $params2);
 
             // Check if the query executed successfully
-            if ($editPemasukan->rowCount() > 0) {
+            if ($editPemasukan) {
                 echo "<script>alert('Data berhasil diubah');</script>";
                 echo "<script>document.location.href='pemasukan.php';</script>";
             } else {

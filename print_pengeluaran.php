@@ -155,9 +155,13 @@ if (isset($_GET['id'])) {
     $pdf->Cell(10, 40, $QTY, 1, 0, 'R');
     $pdf->Cell(20, 40, $KONDISI, 1, 0, 'C');
     $pdf->MultiCell(85, 40, $KETERANGAN_ALAT, 1, 'L', 0, 0, '', '', true, 0, false, true, 40, 'M');
-    $extension = strtoupper(pathinfo($FOTO, PATHINFO_EXTENSION)); // Extract the file extension
-    // Place the image
-    $pdf->Image($FOTO, $pdf->GetX(), $pdf->GetY(), 50, 40, $extension, '', '', true, 150, '', false, false, 1, false, false, false);
+    if (empty($FOTO)) {
+        $pdf->Cell(50, 40, '', 1, 0, 'C');
+    } else {
+        $extension = strtoupper(pathinfo($FOTO, PATHINFO_EXTENSION)); // Extract the file extension
+        // Place the image
+        $pdf->Image($FOTO, $pdf->GetX(), $pdf->GetY(), 50, 40, $extension, '', '', true, 150, '', false, false, 1, false, false, false);
+    }
 
     
     

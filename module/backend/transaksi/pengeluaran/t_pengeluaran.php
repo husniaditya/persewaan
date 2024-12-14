@@ -86,6 +86,7 @@ if (isset($_GET['method']) && $_GET['method'] == 'delete') {
         if (isset($_POST['simpan'])) {
             // Data Pengeluaran
             $ID_PENGELUARAN = $_GET['id'];
+            $ID_PERSEDIAAN = $_GET['psd'];
             $TANGGAL_KELUAR = $_POST['TANGGAL_KELUAR'];
             $NAMA = $_POST['NAMA'];
             $OPERATING_UNIT = $_POST['OPERATING_UNIT'];
@@ -100,13 +101,17 @@ if (isset($_GET['method']) && $_GET['method'] == 'delete') {
 
             $QTY = $QTY * -1;
 
-            $getstok = GetQuery2("SELECT SUM(p.QTY) AS TOTAL_QTY FROM t_persediaan p LEFT JOIN t_pengeluaran k on p.ID_TRANSAKSI = k.ID_PENGELUARAN AND k.ID_PENGELUARAN < :ID_PENGELUARAN WHERE p.ID_BARANG = :ID_BARANG AND p.STATUS = 1", [':ID_BARANG' => $ID_BARANG, ':ID_PENGELUARAN' => $ID_PENGELUARAN]);
+            $getstok = GetQuery2("SELECT SUM(p.QTY) AS TOTAL_QTY
+            FROM t_persediaan p
+            WHERE p.ID_BARANG = :ID_BARANG
+            AND p.STATUS = 1
+            AND ID_PERSEDIAAN < :ID_PERSEDIAAN", [':ID_BARANG' => $ID_BARANG, ':ID_PERSEDIAAN' => $ID_PERSEDIAAN]);
             $rowStok = $getstok->fetch(PDO::FETCH_ASSOC);
             $stok = $rowStok['TOTAL_QTY'];
 
             if ($stok + $QTY < 0) {
                 echo "<script>alert('Stok tidak mencukupi');</script>";
-                echo "<script>document.location.href='pengeluaran_transaksi.php?id=$ID_PENGELUARAN';</script>";
+                echo "<script>document.location.href='pengeluaran_transaksi.php?method=edit&id=$ID_PENGELUARAN&psd=$ID_PERSEDIAAN';</script>";
                 exit;
             }
 
@@ -134,7 +139,7 @@ if (isset($_GET['method']) && $_GET['method'] == 'delete') {
             }
 
             // Update Query
-            $query = "UPDATE t_pengeluaran SET TANGGAL_KELUAR = :TANGGAL_KELUAR, NAMA = :NAMA, OPERATING_UNIT = :OPERATING_UNIT, DIVISI = :DIVISI, ID_PEKERJAAN = :ID_PEKERJAAN, KETERANGAN = :KETERANGAN WHERE ID_PENGELUARAN = :ID_PENGELUARAN";
+            $query = "UPDATE t_pengeluaran SET TANGGAL_KELUAR = :TANGGAL_KELUAR, NAMA = :NAMA, OPERATING_UNIT = :OPERATING_UNIT, DIVISI = :DIVISI, ID_PEKERJAAN = :ID_PEKERJAAN, KETERANGAN = :KETERANGAN_PENGELUARAN WHERE ID_PENGELUARAN = :ID_PENGELUARAN";
             $params = array(
                 ':ID_PENGELUARAN' => $ID_PENGELUARAN,
                 ':TANGGAL_KELUAR' => $TANGGAL_KELUAR,
@@ -142,27 +147,29 @@ if (isset($_GET['method']) && $_GET['method'] == 'delete') {
                 ':OPERATING_UNIT' => $OPERATING_UNIT,
                 ':DIVISI' => $DIVISI,
                 ':ID_PEKERJAAN' => $ID_PEKERJAAN,
-                ':KETERANGAN' => $KETERANGAN_PENGELUARAN
+                ':KETERANGAN_PENGELUARAN' => $KETERANGAN_PENGELUARAN
             );
             $editPengeluaran = GetQuery2($query, $params);
 
-            $query2 = "UPDATE t_persediaan SET ID_BARANG = :ID_BARANG, QTY = :QTY, KONDISI = :KONDISI, KETERANGAN = :KETERANGAN WHERE ID_TRANSAKSI = :ID_PENGELUARAN";
+            $query2 = "UPDATE t_persediaan SET ID_BARANG = :ID_BARANG, QTY = :QTY, KONDISI = :KONDISI, FOTO = :FOTO, KETERANGAN = :KETERANGAN_PERSEDIAAN WHERE ID_TRANSAKSI = :ID_PENGELUARAN";
             $params2 = array(
                 ':ID_PENGELUARAN' => $ID_PENGELUARAN,
                 ':ID_BARANG' => $ID_BARANG,
                 ':QTY' => $QTY,
                 ':KONDISI' => $KONDISI,
-                ':KETERANGAN' => $KETERANGAN_PERSEDIAAN
+                ':FOTO' => $idCardFileDestination,
+                ':KETERANGAN_PERSEDIAAN' => $KETERANGAN_PERSEDIAAN
             );
             $updatePersediaan = GetQuery2($query2, $params2);
 
             // Check if the query executed successfully
-            if ($editPengeluaran->rowCount() > 0) {
+            if ($editPengeluaran) {
                 echo "<script>alert('Data berhasil diubah');</script>";
                 echo "<script>document.location.href='pengeluaran.php';</script>";
             } else {
                 echo "<script>alert('Data gagal diubah');</script>";
             }
+            
         }
     } else { // Add Data
         if (isset($_POST['simpan'])) {

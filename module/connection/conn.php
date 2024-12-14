@@ -2,8 +2,8 @@
 
 $host = "localhost";
 $database = "persewaan";
-$username = "gis";
-$password = "persewaangis";
+$username = "root";
+$password = "";
 
 try {
     $db1 = new PDO("mysql:host=$host;dbname=$database", $username, $password);
