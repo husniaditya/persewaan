@@ -98,15 +98,27 @@ if (isset($_GET['method']) && $_GET['method'] == 'delete') {
             );
             $editPemasukan = GetQuery2($query, $params);
 
-            $query2 = "UPDATE t_persediaan SET ID_BARANG = :ID_BARANG, QTY = :QTY, FOTO = :FOTO, KONDISI = :KONDISI, KETERANGAN = :KETERANGAN WHERE ID_TRANSAKSI = :ID_PEMASUKAN";
-            $params2 = array(
-                ':ID_PEMASUKAN' => $ID_PEMASUKAN,
-                ':ID_BARANG' => $ID_BARANG,
-                ':QTY' => $QTY,
-                ':FOTO' => $idCardFileDestination,
-                ':KONDISI' => $KONDISI,
-                ':KETERANGAN' => $KETERANGAN_PERSEDIAAN
-            );
+            // Handle Image File if not empty
+            if (!empty($_FILES['FOTO']['tmp_name'][0])) {
+                $query2 = "UPDATE t_persediaan SET ID_BARANG = :ID_BARANG, QTY = :QTY, FOTO = :FOTO, KONDISI = :KONDISI, KETERANGAN = :KETERANGAN WHERE ID_TRANSAKSI = :ID_PEMASUKAN";
+                $params2 = array(
+                    ':ID_PEMASUKAN' => $ID_PEMASUKAN,
+                    ':ID_BARANG' => $ID_BARANG,
+                    ':QTY' => $QTY,
+                    ':FOTO' => $idCardFileDestination,
+                    ':KONDISI' => $KONDISI,
+                    ':KETERANGAN' => $KETERANGAN_PERSEDIAAN
+                );
+            } else {
+                $query2 = "UPDATE t_persediaan SET ID_BARANG = :ID_BARANG, QTY = :QTY, KONDISI = :KONDISI, KETERANGAN = :KETERANGAN WHERE ID_TRANSAKSI = :ID_PEMASUKAN";
+                $params2 = array(
+                    ':ID_PEMASUKAN' => $ID_PEMASUKAN,
+                    ':ID_BARANG' => $ID_BARANG,
+                    ':QTY' => $QTY,
+                    ':KONDISI' => $KONDISI,
+                    ':KETERANGAN' => $KETERANGAN_PERSEDIAAN
+                );
+            }
             $updatePersediaan = GetQuery2($query2, $params2);
 
             // Check if the query executed successfully
